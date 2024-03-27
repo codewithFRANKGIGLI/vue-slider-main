@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Vue 3 Simple Slider - Mandalorian </title>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
+    integrity='sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=='
+    crossorigin='anonymous' referrerpolicy='no-referrer' />
+
+  <link href='./assets/css/style.css' rel='stylesheet'>
+</head>
+
+<body>
+
+  <div id='app'>
+    <h1 class="title">{{ movie.title }}</h1>
+
+    <div class="container" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
+      <div class="card movie">
+        <img :src="movie.images[activeImage]" alt="Test">
+
+        <div class="thumbnails">
+          <img
+            v-for="singleThumbnail, index in movie.images" 
+            :src="singleThumbnail" 
+            class="thumb" 
+            :class="{'active': index == activeImage}"
+            @click="activateImage(index)"
+          >
+        </div>
+
+        <div class="navigator">
+          <div class="prev" @click="showPreviousImage">
+            <i class="fa-solid fa-chevron-left"></i>
+          </div>
+          <div class="next" @click="showNextImage">
+            <i class="fa-solid fa-chevron-right">
+            </i>
+          </div>
+        </div>
+        <div class="details">
+          <h3 class="title">{{ movie.title }}</h3>
+          <div>Category: {{ movie.category }}</div>
+          <small>Lenght: {{ movie.length }} min</small>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+ <script src="https://unpkg.com/vue@3"></script>
+  <script src='./assets/js/app.js'></script>
+</body>
+
+</html>
